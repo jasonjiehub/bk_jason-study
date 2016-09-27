@@ -34,8 +34,8 @@ public class TestFileNio {
             StringBuffer strBuf = new StringBuffer("");
             while(fcin.read(rBuffer) != -1){
                 int rSize = rBuffer.position();
-                rBuffer.rewind();
-                rBuffer.get(bs);
+                rBuffer.rewind();   //将position置为0，准备读
+                rBuffer.get(bs);    //从上述position=0位置开始读
                 rBuffer.clear();
                 String tempString = new String(bs, 0, rSize);
                 int fromIndex = 0;
@@ -44,7 +44,7 @@ public class TestFileNio {
                 while((endIndex = tempString.indexOf(enterStr, fromIndex)) != -1){
                     String line = tempString.substring(fromIndex, endIndex);
                     line = strBuf.toString() + line;
-                    writeFileByLine(fcout, wBuffer, line);
+                    writeFileByLine(fcout, line);
                     strBuf.delete(0, strBuf.length());
                     fromIndex = endIndex + 1;
                 }
@@ -60,9 +60,9 @@ public class TestFileNio {
         }
     }
 
-    public static void writeFileByLine(FileChannel fcout, ByteBuffer wBuffer, String line){
+    public static void writeFileByLine(FileChannel fcout, String line){
         try {
-            fcout.write(wBuffer.wrap(line.getBytes()), fcout.size());
+            fcout.write(ByteBuffer.wrap(line.getBytes()), fcout.size());
         } catch (IOException e) {
             e.printStackTrace();
         }
