@@ -1,4 +1,4 @@
-package com.sogou.study.nio;
+package com.sogou.study.nio.socket;
 
 /**
  * Created by denglinjie on 2016/9/27.
