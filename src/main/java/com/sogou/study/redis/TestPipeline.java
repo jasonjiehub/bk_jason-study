@@ -15,7 +15,7 @@ public class TestPipeline {
         Jedis jedis = new Jedis("localhost");
         jedis.auth("123");
 //        jedis.slaveof("", 6379);
-//        Client client = new Client("localhost");
+//        ClientOne client = new ClientOne("localhost");
 //        System.out.println(jedis.info());
 //        client.clientSetname("jaosn");
 //        System.out.println(client.clientGetname());
